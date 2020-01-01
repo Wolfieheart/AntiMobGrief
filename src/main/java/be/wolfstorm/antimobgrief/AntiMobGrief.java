@@ -18,7 +18,7 @@ public class AntiMobGrief extends JavaPlugin {
         Utils.readConfig(getConfig());
 
         getServer().getPluginManager().registerEvents(new EventListener(), instance);
-        //getCommand("amg").setExecutor(new CommandHandler());
+        getCommand("amg").setExecutor(new CommandHandler());
     }
 
     @Override

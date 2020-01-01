@@ -1,6 +1,7 @@
 package be.wolfstorm.antimobgrief;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -12,6 +13,7 @@ public class Utils {
 
     private static PluginDescriptionFile pluginDescFile;
     private static FileConfiguration config;
+
     private static String allowGhastGrief;
     private static String allowEndermanGrief;
     private static String allowCreeperGrief;
@@ -63,6 +65,15 @@ public class Utils {
     public static String getAllowSkeletonHorseSpawnEvent(){
         return allowSkeletonHorseSpawnEvent;
     }
+
+    /*public static void reloadConfig(Plugin plugin, CommandSender sender) {
+        config = plugin.getConfig();
+
+        if(allowCreeperGrief.contains("true")){
+
+        }
+
+    }*/
 
     public enum Perm{
         antimobgrief("AntiMobGrief.op");
