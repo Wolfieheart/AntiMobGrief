@@ -1,7 +1,5 @@
-allowSkeletonHorseSpawnEvent:'True'
+allowCreeperGrief: 'true'
 
-allowCreeperGrief:'True'
+allowEndermanGrief: 'true'
 
-allowEndermanGrief:'True'
-
-allowGhastGrief:'True'
+allowGhastGrief: 'true'

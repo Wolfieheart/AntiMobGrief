@@ -44,14 +44,6 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void onCreatureSpawn(CreatureSpawnEvent e){
-        if(e.getEntity().getType() == EntityType.SKELETON_HORSE){
-            if(Utils.getAllowSkeletonHorseSpawnEvent().equals("false")){
-                e.setCancelled(true);
-            }
-        }
-    }
 
 
 }
