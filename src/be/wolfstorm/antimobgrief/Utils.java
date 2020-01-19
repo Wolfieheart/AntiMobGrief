@@ -16,6 +16,9 @@ public class Utils {
     private static String allowGhastGrief;
     private static String allowEndermanGrief;
     private static String allowCreeperGrief;
+    private static String allowRavagerGrief;
+    private static String allowBedExplosionGrief;
+
 
     public static void checkForConfigs(Plugin plugin){
         try{
@@ -40,12 +43,12 @@ public class Utils {
         }
     }
 
-    public static FileConfiguration readConfig(FileConfiguration config){
+    public static void readConfig(FileConfiguration config){
         allowGhastGrief = config.getString("allowGhastGrief");
         allowEndermanGrief = config.getString("allowEndermanGrief");
         allowCreeperGrief = config.getString("allowCreeperGrief");
-        
-        return config;
+        allowRavagerGrief = config.getString("allowRavagerGrief");
+        allowBedExplosionGrief = config.getString("allowBedExplosionGrief");
     }
 
     public static String getAllowGhastGrief(){
@@ -60,14 +63,13 @@ public class Utils {
         return allowCreeperGrief;
     }
 
-    /*public static void reloadConfig(Plugin plugin, CommandSender sender) {
-        config = plugin.getConfig();
+    public static String getAllowRavagerGrief(){
+        return allowRavagerGrief;
+    }
 
-        if(allowCreeperGrief.contains("true")){
-
-        }
-
-    }*/
+    public static String getAllowBedExplosionGrief(){
+        return allowBedExplosionGrief;
+    }
 
     public enum Perm{
         antimobgrief("AntiMobGrief.op");

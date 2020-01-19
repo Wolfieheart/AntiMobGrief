@@ -6,6 +6,7 @@ commands:
   amg:
     description: Show Help for AntiMobGrief
     usage: /amg <command> <value>
+  amg
 permissions:
   antimobgrief.op:
     description: Give you access to all AntiMobGrief commands
