@@ -1,5 +1,5 @@
 name: AntiMobGrief
-main: be.wolfstorm.bettersocialspy.BetterSocialSpy
+main: be.wolfstorm.antimobgrief.AntiMobGrief
 version: 1.0-SNAPSHOT
 author: Wolfstorm
 commands:
@@ -8,5 +8,5 @@ commands:
     usage: /amg <command> <value>
 permissions:
   antimobgrief.op:
-    description: Give you access to all antimobgrief commands
+    description: Give you access to all AntiMobGrief commands
     default: op
