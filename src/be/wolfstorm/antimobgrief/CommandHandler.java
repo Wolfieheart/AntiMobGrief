@@ -1,5 +1,6 @@
 package be.wolfstorm.antimobgrief;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,33 +35,39 @@ public class CommandHandler implements CommandExecutor {
                     sender.sendMessage(ChatColor.YELLOW + "/amg setEndermanGrief true/false - Turn Enderman Grief On or Off");
                     sender.sendMessage(ChatColor.YELLOW + "/amg reload - Reload AntiMobGrief's Configuration File");
                 }
+            }
 
-                //setGhastGrief true/false
-                if (args[0].equalsIgnoreCase("setGhastGrief")) {
-                    if (args.length < 1) {
-                        return false;
+            //setGhastGrief true/false
+            if (args[0].equalsIgnoreCase("setGhastGrief")) {
+                if (args.length < 1) {
+                    return false;
+                }
+                if (sender instanceof Player) {
+                    player = (Player) sender;
+                    if (Utils.Perm.antimobgrief.has(player) && !player.isOp()) {
+                        player.sendMessage(ChatColor.DARK_RED + "[AntiMobGrief] You do not have permission to perform this command!");
+                        return true;
                     }
-                    if (sender instanceof Player) {
-                        player = (Player) sender;
-                        if (Utils.Perm.antimobgrief.has(player) && !player.isOp()) {
-                            player.sendMessage(ChatColor.DARK_RED + "[AntiMobGrief] You do not have permission to perform this command!");
-                            return true;
-                        }
+                }
+                if (!args[1].contains("true") & !args[1].contains("false")) {
+                    sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] Argument must be boolean. Usage: /amg setGhastGrief True/False");
+                } else if (args[1].contains("true") & !args[1].contains("false")) {
+                    config = plugin.getConfig();
+                    config.set("allowGhastGrief", "" + args[1] + "");
+                    try {
+                        config.save(String.valueOf(config));
+                    }catch (IOException e){
+                        Bukkit.getServer().getLogger().severe("--- [AntiMobGrief] An Error has Occurred ---");
+                        Bukkit.getServer().getLogger().severe("--- Please Create an issueA with this Stack Trace ---");
+                        e.printStackTrace();
                     }
-                    if (!args[1].contains("true") & !args[1].contains("false")) {
-                        sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] Argument must be boolean. Usage: /amg setGhastGrief True/False");
-                    } else if (args[1].contains("true") & !args[1].contains("false")) {
-                        FileConfiguration config = plugin.getConfig();
-                        config.set("allowGhastGrief", "" + args[1] + "");
-                        plugin.saveConfig();
 
-                        //Utils.reloadConfig(this, null);
-                        sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] setGhastGrief has been set to: " + args[1]);
-                        if (args[1].contains("false")) {
-                            sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] FIREBALLS from Ghasts will no longer destroy blocks.");
-                        } else if (args[1].contains("true")) {
-                            sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] FIREBALLS from Ghasts will continue destroying blocks.");
-                        }
+                    //Utils.reloadConfig(this, null);
+                    sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] setGhastGrief has been set to: " + args[1]);
+                    if (args[1].contains("false")) {
+                        sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] FIREBALLS from Ghasts will no longer destroy blocks.");
+                    } else if (args[1].contains("true")) {
+                        sender.sendMessage(ChatColor.YELLOW + "[AntiMobGrief] FIREBALLS from Ghasts will continue destroying blocks.");
                     }
                 }
             }
