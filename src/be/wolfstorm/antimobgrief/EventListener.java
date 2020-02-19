@@ -15,28 +15,28 @@ import org.bukkit.event.block.BlockExplodeEvent;
 public class EventListener implements Listener {
 
     @EventHandler
-    public void onEntityChangeBlock(EntityExplodeEvent e){
+    public void onEntityChangeBlock(EntityExplodeEvent e) {
 
         //GHAST FIREBALL DAMAGE DISABLED
-        if(e.getEntityType() == EntityType.FIREBALL){
-            if(Utils.getAllowGhastGrief().equalsIgnoreCase("false")){
+        if (e.getEntityType() == EntityType.FIREBALL) {
+            if (Utils.getAllowGhastGrief().equalsIgnoreCase("false")) {
                 e.setYield(0F);
                 e.setCancelled(true);
             }
         }
 
         //CREEPER GRIEFING DISABLED
-        if(e.getEntity().getType() == EntityType.CREEPER){
-            if(Utils.getAllowCreeperGrief().equalsIgnoreCase("false")){
+        if (e.getEntity().getType() == EntityType.CREEPER) {
+            if (Utils.getAllowCreeperGrief().equalsIgnoreCase("false")) {
                 e.setCancelled(true);
             }
         }
     }
 
     @EventHandler
-    public void onEntityChangeBlock(EntityChangeBlockEvent e){
-        if(e.getEntityType() == EntityType.ENDERMAN){
-            if(Utils.getAllowEndermanGrief().equalsIgnoreCase("false")){
+    public void onEntityChangeBlock(EntityChangeBlockEvent e) {
+        if (e.getEntityType() == EntityType.ENDERMAN) {
+            if (Utils.getAllowEndermanGrief().equalsIgnoreCase("false")) {
                 e.setCancelled(true);
             }
         }
@@ -45,9 +45,9 @@ public class EventListener implements Listener {
 
     //Disable Ravager Griefing
     @EventHandler
-    public void onRavagerGriefEvent(EntityChangeBlockEvent e){
-        if(e.getEntityType() == EntityType.RAVAGER){
-            if(Utils.getAllowRavagerGrief().equalsIgnoreCase("false")){
+    public void onRavagerGriefEvent(EntityChangeBlockEvent e) {
+        if (e.getEntityType() == EntityType.RAVAGER) {
+            if (Utils.getAllowRavagerGrief().equalsIgnoreCase("false")) {
                 e.setCancelled(true);
             }
         }
@@ -55,14 +55,11 @@ public class EventListener implements Listener {
 
     //Disable Bed Explosions
     @EventHandler
-    public void onExplode(BlockExplodeEvent e){
-        if(Utils.getAllowBedExplosionGrief().equalsIgnoreCase("false")){
-            if (e.getBlock().getWorld().getEnvironment() == World.Environment.NETHER){
-                    e.setCancelled(true);
-                }
+    public void onExplode(BlockExplodeEvent e) {
+        if (Utils.getAllowBedExplosionGrief().equalsIgnoreCase("false")) {
+            if (e.getBlock().getWorld().getEnvironment() == World.Environment.NETHER) {
+                e.setCancelled(true);
             }
         }
     }
-
-
 }
