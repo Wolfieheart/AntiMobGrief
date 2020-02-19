@@ -26,7 +26,7 @@ public class EventListener implements Listener {
         }
 
         //CREEPER GRIEFING DISABLED
-        if (e.getEntityType() == EntityType.CREEPER){
+        if(e.getEntity().getType() == EntityType.CREEPER){
             if(Utils.getAllowCreeperGrief().equalsIgnoreCase("false")){
                 e.setCancelled(true);
             }
@@ -58,9 +58,6 @@ public class EventListener implements Listener {
     public void onExplode(BlockExplodeEvent e){
         if(Utils.getAllowBedExplosionGrief().equalsIgnoreCase("false")){
             if (e.getBlock().getWorld().getEnvironment() == World.Environment.NETHER){
-                if(e.getBlock().getType().equals(Material.AIR)){
-                    e.blockList().clear();
-                    e.setYield(0);
                     e.setCancelled(true);
                 }
             }
