@@ -1,5 +1,5 @@
-allowCreeperGrief: 'true'
-
-allowEndermanGrief: 'true'
-
-allowGhastGrief: 'true'
+allowCreeperGrief: true
+allowEndermanGrief: false
+allowGhastGrief: false
+allowBedExplosionGrief: true
+allowRavagerGrief: true

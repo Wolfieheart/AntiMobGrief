@@ -2,11 +2,6 @@ name: AntiMobGrief
 main: be.wolfstorm.antimobgrief.AntiMobGrief
 version: 1.0-SNAPSHOT
 author: Wolfstorm
-commands:
-  amg:
-    description: Show Help for AntiMobGrief
-    usage: /amg <command> <value>
-  amg
 permissions:
   antimobgrief.op:
     description: Give you access to all AntiMobGrief commands

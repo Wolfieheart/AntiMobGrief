@@ -1,13 +1,12 @@
 package be.wolfstorm.antimobgrief;
 
 import org.bukkit.Material;
-import org.bukkit.entity.*;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.World;
 
 //---- EVENTS FOR ENTITIES ----\\
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
@@ -18,17 +17,16 @@ public class EventListener implements Listener {
     @EventHandler
     public void onEntityChangeBlock(EntityExplodeEvent e){
 
-        Entity entity = e.getEntity();
-
         //GHAST FIREBALL DAMAGE DISABLED
-        if(entity instanceof Ghast){
-            if(Utils.getAllowGhastGrief().equals("false")){
+        if(e.getEntityType() == EntityType.FIREBALL){
+            if(Utils.getAllowGhastGrief().equalsIgnoreCase("false")){
+                e.setYield(0F);
                 e.setCancelled(true);
             }
         }
 
         //CREEPER GRIEFING DISABLED
-        if (entity instanceof Creeper){
+        if (e.getEntityType() == EntityType.CREEPER){
             if(Utils.getAllowCreeperGrief().equalsIgnoreCase("false")){
                 e.setCancelled(true);
             }
@@ -37,9 +35,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onEntityChangeBlock(EntityChangeBlockEvent e){
-        Entity entity = e.getEntity();
-
-        if(entity instanceof Enderman){
+        if(e.getEntityType() == EntityType.ENDERMAN){
             if(Utils.getAllowEndermanGrief().equalsIgnoreCase("false")){
                 e.setCancelled(true);
             }
@@ -51,19 +47,24 @@ public class EventListener implements Listener {
     @EventHandler
     public void onRavagerGriefEvent(EntityChangeBlockEvent e){
         if(e.getEntityType() == EntityType.RAVAGER){
-            e.setCancelled(true);
+            if(Utils.getAllowRavagerGrief().equalsIgnoreCase("false")){
+                e.setCancelled(true);
+            }
         }
     }
 
     //Disable Bed Explosions
     @EventHandler
     public void onExplode(BlockExplodeEvent e){
-        if (e.getBlock().getWorld().getEnvironment() == World.Environment.NETHER){
-            if(e.getBlock().getType().equals(Material.AIR)){
-                e.setCancelled(true);
+        if(Utils.getAllowBedExplosionGrief().equalsIgnoreCase("false")){
+            if (e.getBlock().getWorld().getEnvironment() == World.Environment.NETHER){
+                if(e.getBlock().getType().equals(Material.AIR)){
+                    e.blockList().clear();
+                    e.setYield(0);
+                    e.setCancelled(true);
+                }
             }
         }
-
     }
 
 
