@@ -20,7 +20,6 @@ public class EventListener implements Listener {
         //GHAST FIREBALL DAMAGE DISABLED
         if (e.getEntityType() == EntityType.FIREBALL) {
             if (Utils.getAllowGhastGrief().equalsIgnoreCase("false")) {
-                e.setYield(0F);
                 e.setCancelled(true);
             }
         }
