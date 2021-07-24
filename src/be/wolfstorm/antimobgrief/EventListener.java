@@ -1,6 +1,6 @@
 package be.wolfstorm.antimobgrief;
 
-import org.bukkit.Material;
+//import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
